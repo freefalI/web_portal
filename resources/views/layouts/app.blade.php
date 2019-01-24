@@ -12,6 +12,8 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     </head>
     <body>
         <div id="app">
@@ -28,7 +30,9 @@
                     </div>
 
                     <div class="navbar-menu" id="navMenu">
-                        <div class="navbar-start"></div>
+                        <div class="navbar-start">
+                            <a class="navbar-item " href="{{ route('feed') }}">Feed</a>
+                        </div>
 
                         <div class="navbar-end">
                             @if (Auth::guest())
@@ -55,7 +59,9 @@
                     </div>
                 </div>
             </nav>
-            @yield('content')
+            <div class="container">
+                @yield('content')
+            </div>
         </div>
 
         <!-- Scripts -->
