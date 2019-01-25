@@ -80,21 +80,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $action = $request->get('action');
-        if ($action=='like'){
-            $post->increment('likes');
-            $likeCount = $post->likes;
-            return response()->json(compact('likeCount'));
-        }
-        else if ($action=='reply'){
-            $post->increment('replies');
-            $replyCount = $post->replies;
-            return response()->json(compact('replyCount'));
-        }
-        else{
-            $post->update($request->all());
-            return redirect('home');//->with('flash_message', 'Post edited!');
-        }
+        $post->update($request->all());
+        return redirect('home');//->with('flash_message', 'Post edited!');
     }
 
     /**
@@ -103,24 +90,18 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return back();
     }
 
     public function like(Request $request, Post $post)
     {
-        // $action = $request->get('action');
-        // if ($action=='like'){
             $post->increment('likes');
             $likeCount = $post->likes;
             return response()->json(compact('likeCount'));
-        // }
-        // else if ($action=='reply'){
-        //     $post->increment('replies');
-        //     $replyCount = $post->replies;
-        //     return response()->json(compact('replyCount'));
-        // }
+      
     }
 
     // public function repost(Post $post)

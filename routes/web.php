@@ -15,12 +15,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//posts
 Route::resource('posts','PostController');
 Route::patch('posts/{post}/like','PostController@like')->name('post.like');
 
-Route::resource('users','UserController');
-// Route::resource('posts','PostController');
+
+//users
+// Route::resource('users','AccountController')->only([
+//     'show','edit','update'
+// ]);
+Route::get('account','AccountController@index')->middleware('auth')->name('account.index');
+Route::get('account/edit','AccountController@edit')->middleware('auth')->name('account.edit');
+Route::patch('account/update','AccountController@update')->middleware('auth')->name('account.update');
+
+Route::get('users/{user}','UserController@show');
+
+
 Route::get('feed','FeedController@index')->name('feed');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

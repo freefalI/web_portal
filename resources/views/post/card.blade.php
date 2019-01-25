@@ -21,29 +21,32 @@
                 {{$post->author->name}}
             </strong>
             </a>
-            <small>@ {{$post->author->nickname}} </small> <small>{{$post->created_at}}</small>
+            <small>@ {{$post->author->nickname}} </small> <small>{{$post->created_at->diffForHumans()}}</small>
             <br>
             {{$post->content}}
             <br>
             <a href='/posts/{{$post->id}}'>See full</a>
-            @if(auth()->user()->isAuthor($post))
+            @if(auth()->check() && auth()->user()->isAuthor($post))
             <br>
-
             <a href='/posts/{{$post->id}}/edit'>Edit</a>
-            
+            <br>
+            <form action='/posts/{{$post->id}}' method=POST>
+                @method('DELETE')
+                @csrf
+                <button class='button is-info' type="submit">Delete</button> 
             @endif
         </p>
         </div>
         <nav class="level is-mobile">
         <div class="level-left">
-            <a class="level-item reply-button" aria-label="reply">
+            {{-- <a class="level-item reply-button" aria-label="reply">
             <span class="icon is-small">
                 <i class="fas fa-reply" aria-hidden="true"></i>
             </span>
             </a> 
             <span class="level-item reply-count" >
-                {{$post->replies}}
-            </span>
+                block
+            </span> --}}
             {{-- <a class="level-item" aria-label="retweet">
             <span class="icon is-small">
                 <i class="fas fa-retweet" aria-hidden="true"></i>
