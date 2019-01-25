@@ -5,7 +5,11 @@
     <div class="media-left">
         <figure class="image is-64x64">
         <a href="/users/{{$post->author->id}}">
-            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+            {{-- <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"> --}}
+            {{-- <img src="{{ Avatar::create('Joko Widodo')->toBase64() }}" /> --}}
+            <img src="{{ Avatar::create($post->author->name)->toBase64() }}" />
+            
+
         </a>
         </figure>
     </div>
@@ -22,6 +26,12 @@
             {{$post->content}}
             <br>
             <a href='/posts/{{$post->id}}'>See full</a>
+            @if(auth()->user()->isAuthor($post))
+            <br>
+
+            <a href='/posts/{{$post->id}}/edit'>Edit</a>
+            
+            @endif
         </p>
         </div>
         <nav class="level is-mobile">

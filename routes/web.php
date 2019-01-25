@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Route::resource('posts','PostController');
+Route::patch('posts/{post}/like','PostController@like')->name('post.like');
+
 Route::resource('users','UserController');
 // Route::resource('posts','PostController');
 Route::get('feed','FeedController@index')->name('feed');

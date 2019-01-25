@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable=[
-        'content', 'owner_id','likes','replies'
+        'content', 'author_id','likes','replies'
     ];
     public function author()
     {
-        return $this->belongsTo(User::class,'owner_id');
+        return $this->belongsTo(User::class,'author_id');
     }
 
 }

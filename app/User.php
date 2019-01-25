@@ -32,6 +32,11 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany(Post::class,'owner_id');
+        return $this->hasMany(Post::class,'author_id');
+    }
+
+    public function isAuthor(Post $post)
+    {
+        return $post->author_id == $this->id;
     }
 }

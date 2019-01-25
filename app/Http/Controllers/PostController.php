@@ -11,6 +11,8 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('show');
+
+        $this->middleware('can:update,post')->only(['edit','update','destroy']);
     }
     /**
      * Display a listing of the resource.
@@ -30,7 +32,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.create');
     }
 
     /**
@@ -41,7 +43,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = auth()->user()->posts()->create($request->all());
+        return redirect()->route('feed');
     }
 
     /**
@@ -62,9 +65,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('post.edit',compact('post'));
+        
     }
 
     /**
@@ -87,6 +91,10 @@ class PostController extends Controller
             $replyCount = $post->replies;
             return response()->json(compact('replyCount'));
         }
+        else{
+            $post->update($request->all());
+            return redirect('home');//->with('flash_message', 'Post edited!');
+        }
     }
 
     /**
@@ -99,4 +107,34 @@ class PostController extends Controller
     {
         //
     }
+
+    public function like(Request $request, Post $post)
+    {
+        // $action = $request->get('action');
+        // if ($action=='like'){
+            $post->increment('likes');
+            $likeCount = $post->likes;
+            return response()->json(compact('likeCount'));
+        // }
+        // else if ($action=='reply'){
+        //     $post->increment('replies');
+        //     $replyCount = $post->replies;
+        //     return response()->json(compact('replyCount'));
+        // }
+    }
+
+    // public function repost(Post $post)
+    // {
+    //     $action = $request->get('action');
+    //     if ($action=='like'){
+    //         $post->increment('likes');
+    //         $likeCount = $post->likes;
+    //         return response()->json(compact('likeCount'));
+    //     }
+    //     else if ($action=='reply'){
+    //         $post->increment('replies');
+    //         $replyCount = $post->replies;
+    //         return response()->json(compact('replyCount'));
+    //     }
+    // }
 }

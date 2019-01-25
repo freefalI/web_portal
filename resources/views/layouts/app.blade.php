@@ -34,6 +34,10 @@
                     <div class="navbar-menu" id="navMenu">
                         <div class="navbar-start">
                             <a class="navbar-item " href="{{ route('feed') }}">Feed</a>
+                            @auth
+                                <a class="navbar-item " href="{{ route('home') }}">Main Page</a>
+                                <a class="navbar-item " href="{{ route('posts.create') }}">New Post</a>
+                            @endauth
                         </div>
 
                         <div class="navbar-end">
