@@ -58,7 +58,7 @@
             </span>
             </a>
             <span class="level-item like-count" >
-                    {{$post->likes}}
+                    {{$post->likesCount}}
             </span>
         </div>
         </nav>

@@ -5,12 +5,14 @@ namespace App;
 use App\Post;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Cog\Laravel\Love\Liker\Models\Traits\Liker;
+use Cog\Contracts\Love\Liker\Models\Liker as LikerContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements LikerContract
 {
     use Notifiable;
-
+    use Liker;
     /**
      * The attributes that are mass assignable.
      *

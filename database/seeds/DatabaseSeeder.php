@@ -36,7 +36,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $user1->posts()->create([
             'content'=>$faker->sentence(),
-            'likes' => 50,
             // 'replies' => 100
         ]);
         $user3->posts()->create([

@@ -98,9 +98,9 @@ class PostController extends Controller
 
     public function like(Request $request, Post $post)
     {
-            $post->increment('likes');
-            $likeCount = $post->likes;
-            return response()->json(compact('likeCount'));
+        $post->toggleLikeBy();
+        $likeCount = $post->likesCount;
+        return response()->json(compact('likeCount'));
       
     }
 

@@ -16,7 +16,6 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->unsignedInteger('author_id');
             $table->text('content');
-            $table->unsignedInteger('likes')->default(0);
             // $table->unsignedInteger('replies')->default(0);
             $table->string('avatar')->default('default_avatar.jpg');
 
