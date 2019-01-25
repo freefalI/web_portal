@@ -29,13 +29,15 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('aaaaaa')
         ]);
         $user3 = User::create([
-            'name' =>'Bogdan Zaseka',
+            'name' =>'Bogdan Bogdan',
             'email' =>'bodya@gmail.com',
             'nickname' =>'bodya252',
             'password' => Hash::make('aaaaaa')
         ]);
         $user1->posts()->create([
-            'content'=>$faker->sentence()
+            'content'=>$faker->sentence(),
+            'likes' => 50,
+            'replies' => 100
         ]);
         $user3->posts()->create([
             'content'=>$faker->sentence()

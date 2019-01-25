@@ -3,11 +3,7 @@
 
 @section('content')
 <h2 class=title>{{$user->name}}</h2>
-
-@ {{$user->nickname}}
-<br>
-
-
+<h3 class='subtitle'>@ {{$user->nickname}} </h3>
 
 <br>
 <h2 class=title>Posts</h2>

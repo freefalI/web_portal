@@ -1,6 +1,6 @@
 
 
-<div class="box">
+<div class="box post-box" data-post-id={{$post->id}}>
     <article class="media">
     <div class="media-left">
         <figure class="image is-64x64">
@@ -26,21 +26,27 @@
         </div>
         <nav class="level is-mobile">
         <div class="level-left">
-            <a class="level-item" aria-label="reply">
+            <a class="level-item reply-button" aria-label="reply">
             <span class="icon is-small">
                 <i class="fas fa-reply" aria-hidden="true"></i>
             </span>
-            </a>
-            <a class="level-item" aria-label="retweet">
+            </a> 
+            <span class="level-item reply-count" >
+                {{$post->replies}}
+            </span>
+            {{-- <a class="level-item" aria-label="retweet">
             <span class="icon is-small">
                 <i class="fas fa-retweet" aria-hidden="true"></i>
             </span>
-            </a>
-            <a class="level-item" aria-label="like">
+            </a> --}}
+            <a class="level-item like-button" aria-label="like">
             <span class="icon is-small">
                 <i class="fas fa-heart" aria-hidden="true"></i>
             </span>
             </a>
+            <span class="level-item like-count" >
+                    {{$post->likes}}
+            </span>
         </div>
         </nav>
     </div>

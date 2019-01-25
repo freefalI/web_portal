@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -69,9 +74,19 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $action = $request->get('action');
+        if ($action=='like'){
+            $post->increment('likes');
+            $likeCount = $post->likes;
+            return response()->json(compact('likeCount'));
+        }
+        else if ($action=='reply'){
+            $post->increment('replies');
+            $replyCount = $post->replies;
+            return response()->json(compact('replyCount'));
+        }
     }
 
     /**
