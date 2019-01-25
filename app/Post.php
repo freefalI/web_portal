@@ -4,12 +4,11 @@ namespace App;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
-use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
+use Overtrue\LaravelFollow\Traits\CanBeLiked;
 
-class Post extends Model implements LikeableContract
+class Post extends Model
 {
-    use Likeable;
+    use CanBeLiked;
     
     protected $fillable=[
         'content', 'author_id'//,'likes','replies'

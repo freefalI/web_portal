@@ -29,6 +29,9 @@ Route::get('account/edit','AccountController@edit')->middleware('auth')->name('a
 Route::patch('account/update','AccountController@update')->middleware('auth')->name('account.update');
 
 Route::get('users/{user}','UserController@show');
+Route::post('users/{user}/follow','UserController@follow');
+Route::get('users/{user}/followers','UserController@followers');
+Route::get('users/{user}/followings','UserController@followings');
 
 
 Route::get('feed','FeedController@index')->name('feed');

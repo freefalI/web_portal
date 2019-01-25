@@ -13,8 +13,10 @@ class FeedController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $posts = Post::latest()->get();
+    {   
+        // $followings=auth()->user()->followings()->posts->get();
+        $posts=Post::whereIn('author_id',auth()->user()->followings()->get()->pluck('id'))->latest()->get();
+        // $posts = Post::latest()->get();
         return view('feed.index',compact('posts'));
     }
 

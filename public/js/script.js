@@ -14,8 +14,10 @@ $(()=>{
             action :'like'
         },
             function (data, status) {
-                var likeCount = data.likeCount;
-                $(self).next('.like-count').text(likeCount);
+                var likeResult = data.likeResult;
+                var likeCounObject = $(self).next('.like-count');
+                var likeCount = parseInt($(likeCounObject).text());
+                $(likeCounObject).text(likeResult ? likeCount + 1 : likeCount - 1);
             }).fail(function(xhr){
                 if(xhr.status==401){
                     window.location = "/login";

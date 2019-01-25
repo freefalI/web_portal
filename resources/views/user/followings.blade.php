@@ -5,12 +5,11 @@
 
 @include('user.card')
 
-
 <br>
-<h2 class=title>Posts</h2>
+<h2 class=title>Followings</h2>
 
-@foreach ($posts as $post)
-@include('post.card')
+@foreach ($users as $user)
+@include('user.card')
 
 
 @endforeach
