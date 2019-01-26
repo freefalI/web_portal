@@ -1,9 +1,15 @@
-$(()=>{
+// $(document).ready(function () {
+//     $("abbr.timeago").timeago();
+// });
+
+
+  $(()=>{
 
     $.ajaxSetup({
         headers: { 'X-CSRF-Token': $('meta[name=csrf-token]').attr('content') }
     });
 
+    
     $(document).on('click', '.like-button', function () {
         var self=this;
         var postId = $(this).closest( ".post-box" ).data('post-id');
@@ -45,4 +51,13 @@ $(()=>{
     //         });
     // });
 
+
+
 });
+
+
+var $j = jQuery.noConflict();
+$j(document).ready(function () {
+    $j("time.timeago").timeago();
+});
+

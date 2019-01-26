@@ -13,16 +13,18 @@
     </div>
   </section>
 
-  <form action="/users/{{$user->id}}/follow" method="post">
-    @csrf
-    <button class="button">
-        @if(Auth::user()->isFollowing($user))
-            Unfollow
-        @else
-            Follow
-        @endif
-    </button>
-  </form>
+  @if(!auth()->user()->is($user))
+    <form action="/users/{{$user->id}}/follow" method="post">
+        @csrf
+        <button class="button">
+            @if( Auth::user()->isFollowing($user))
+                Unfollow
+            @else
+                Follow
+            @endif
+        </button>
+    </form>
+  @endif
 
   <a href="/users/{{$user->id}}/followers">Followers</a>
   <a href="/users/{{$user->id}}/followings">Followings</a>

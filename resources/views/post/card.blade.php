@@ -21,7 +21,10 @@
                 {{$post->author->name}}
             </strong>
             </a>
-            <small>@ {{$post->author->nickname}} </small> <small>{{$post->created_at->diffForHumans()}}</small>
+            <small>@ {{$post->author->nickname}} </small> 
+            <small>
+                    <time class="timeago" datetime="{{$post->created_at->toIso8601String()}}">{{$post->created_at->diffForHumans()}}</time>
+            </small>
             <br>
             {{$post->content}}
             <br>
