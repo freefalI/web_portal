@@ -6,11 +6,48 @@
 
 
 
-<form action="/posts" method="post">
+<form id='form' action="/posts" method=POST>
   @csrf
-  @include ('post.form_layout', ['formMode' => 'create'])
+    @include ('post.form_layout', ['formMode' => 'create'])
 
-</form>
-    
+  </form>
+  @endsection
 
-@endsection
+  @section('specific_scripts')
+
+
+  var toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+ 
+  [{ 'size': ['small', false, 'large', 'huge']}],  // custom dropdown
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+  [ 'link', 'image', 'video', 'formula' ],        
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+  [{ 'font': [] }],
+  [{ 'align': [] }],
+  {{-- ['clean']                                         // remove formatting button --}}
+];
+
+
+  var quill = new Quill('#editor', {
+    modules: {
+      toolbar: toolbarOptions,
+    },
+  theme: 'snow'
+  });
+  var form = $('#form');
+    $('#submit-form-button').click(()=>{
+  $("input[name=content]").val(JSON.stringify(quill.getContents()));
+  console.log(JSON.stringify(quill.getContents()));
+  form.submit();
+  });
+  @endsection
+
+  

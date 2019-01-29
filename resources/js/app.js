@@ -51,3 +51,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 require('./bulma-extensions');
+
+window.Quill = require('quill');

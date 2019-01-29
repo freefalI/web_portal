@@ -26,17 +26,25 @@
                     <time class="timeago" datetime="{{$post->created_at->toIso8601String()}}">{{$post->created_at->diffForHumans()}}</time>
             </small>
             <br>
-            {{$post->content}}
+            {{-- {!!$post->content!!} --}}
+
+            <div class="editor">
+                @php
+                echo $post->content
+                @endphp
+            </div>
+   
             <br>
             <a href='/posts/{{$post->id}}'>See full</a>
             @if(auth()->check() && auth()->user()->isAuthor($post))
-            <br>
-            <a href='/posts/{{$post->id}}/edit'>Edit</a>
-            <br>
-            <form action='/posts/{{$post->id}}' method=POST>
-                @method('DELETE')
-                @csrf
-                <button class='button is-info' type="submit">Delete</button> 
+                <br>
+                <a href='/posts/{{$post->id}}/edit'>Edit</a>
+                <br>
+                <form action='/posts/{{$post->id}}' method=POST>
+                    @method('DELETE')
+                    @csrf
+                    <button class='button is-info' type="submit">Delete</button> 
+                </form>
             @endif
         </p>
         </div>
@@ -68,3 +76,29 @@
     </div>
     </article>
 </div>
+
+
+
+
+{{-- <script type="application/javascript">
+        // alert({{$post->id}});
+
+
+
+
+var editors = $('.editor');
+$.each(editors, function(a,editor) {
+    console.log(1);
+    content=$(editor).html();
+    $(editor).html('');
+    let quill = new Quill(editor, {
+        modules: {
+            toolbar: false,
+        },
+        theme: 'snow',
+        readOnly: true
+    });   
+    
+      quill.setContents(JSON.parse(content));
+}); 
+</script> --}}

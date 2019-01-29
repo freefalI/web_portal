@@ -19,6 +19,12 @@
         <script src="{{asset('js/jquery.timeago.js')}}"></script>
         
         <script src="{{asset('js/script.js')}}"></script>
+
+        <style>
+        .ql-editor {
+            /* background-color: #ffff00; */
+        }
+        </style>
     </head>
     <body>
         <div id="app">
@@ -76,5 +82,9 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
+        <script>
+        @yield('specific_scripts')
+        </script>
+
     </body>
 </html>
