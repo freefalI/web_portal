@@ -27,11 +27,9 @@
             </small>
             <br>
             {{-- {!!$post->content!!} --}}
-
-            <div class="editor">
-                @php
-                echo $post->content
-                @endphp
+            
+            <div class="editor" hidden>
+                 {!!$post->content!!}
             </div>
    
             <br>
@@ -78,27 +76,3 @@
 </div>
 
 
-
-
-{{-- <script type="application/javascript">
-        // alert({{$post->id}});
-
-
-
-
-var editors = $('.editor');
-$.each(editors, function(a,editor) {
-    console.log(1);
-    content=$(editor).html();
-    $(editor).html('');
-    let quill = new Quill(editor, {
-        modules: {
-            toolbar: false,
-        },
-        theme: 'snow',
-        readOnly: true
-    });   
-    
-      quill.setContents(JSON.parse(content));
-}); 
-</script> --}}

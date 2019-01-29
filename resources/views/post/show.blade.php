@@ -18,3 +18,12 @@
     
 
 @endsection
+
+
+
+@section('specific_scripts')
+
+  <script src="{{ asset('js/render_quill.js') }}"></script>
+
+
+@endsection

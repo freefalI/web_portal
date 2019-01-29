@@ -20,18 +20,6 @@
 
 @section('specific_scripts')
 
-var editors = $('.editor');
-$.each(editors, function(a,editor) {
-    content=$(editor).html();
-    $(editor).html('');
-    let quill = new Quill(editor, {
-        modules: {
-            toolbar: false,
-        },
-        theme: 'snow',
-        readOnly: true
-    });   
-    
-      quill.setContents(JSON.parse(content));
-});
+    <script src="{{ asset('js/render_quill.js') }}"></script>
+
 @endsection
