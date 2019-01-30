@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="columns is-marginless is-centered">
-        <div class="column is-5">
+        <div class="column is-8">
             <div class="card">
                 <header class="card-header">
                     <p class="card-header-title">{{ __('Verify Your Email Address') }}</p>

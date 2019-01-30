@@ -36,7 +36,7 @@ Route::get('users/{user}/followings','UserController@followings');
 
 Route::get('feed','FeedController@index')->name('feed')->middleware('auth');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
