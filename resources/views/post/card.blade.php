@@ -1,78 +1,146 @@
 
 
-<div class="box post-box" data-post-id={{$post->id}}>
-    <article class="media">
-    <div class="media-left">
-        <figure class="image is-64x64">
-        <a href="/users/{{$post->author->id}}">
-            {{-- <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"> --}}
-            {{-- <img src="{{ Avatar::create('Joko Widodo')->toBase64() }}" /> --}}
-            <img src="{{ Avatar::create($post->author->name)->toBase64() }}" />
-            
-
-        </a>
-        </figure>
-    </div>
-    <div class="media-content">
-        <div class="content">
-        <p>
-            <a href="/users/{{$post->author->id}}">
-            <strong> 
-                {{$post->author->name}}
-            </strong>
-            </a>
-            <small>@ {{$post->author->nickname}} </small> 
-            <small>
-                    <time class="timeago" datetime="{{$post->created_at->toIso8601String()}}">{{$post->created_at->diffForHumans()}}</time>
-            </small>
-            <br>
-            {{-- {!!$post->content!!} --}}
-            
-            <div class="editor" hidden>
-                 {!!$post->content!!}
+    <div class="  post-box" data-post-id={{$post->id}}>
+        <section class="articles">
+            <div class="column is-10 is-offset-1">
+                <div class="card article">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-center">
+                                {{-- <img
+                                    src="http://www.radfaces.com/images/avatars/angela-chase.jpg"
+                                    class="author-image" alt="Placeholder image">
+                                --}}
+                                <img src="{{ Avatar::create($post->author->name)->toBase64()
+                                }}" class="author-image" alt="Placeholder image" />
+                            </div>
+                            <div class="media-content has-text-centered">
+                                <p class="title article-title">Cras tincidunt
+                                    lobortis feugiat vivamus.</p>
+                                <p class="subtitle is-6 article-subtitle">
+                                    <a href="#">@ {{$post->author->nickname}}</a>
+                                    <time class="timeago" datetime="{{$post->created_at->toIso8601String()}}">{{$post->created_at->diffForHumans()}}</time>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="content article-body">
+                            <div class="editor" hidden>
+                                {!!$post->content!!}
+                            </div>
+                            <br>
+                            <div class="field is-grouped">
+                                <p class="control button">
+                                    <a href='/posts/{{$post->id}}'>See full</a>
+                                </p>
+                                @if(auth()->check() && auth()->user()->isAuthor($post))
+                                {{-- <br> --}}
+                                <p class="control button">
+    
+                                    <a href='/posts/{{$post->id}}/edit'>Edit</a>
+                                </p>
+    
+                                {{-- <br> --}}
+                                
+                                <form action='/posts/{{$post->id}}' method=POST>
+                                    <p class="control">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class='button is-info'
+                                            type="submit">Delete</button>
+                                        </p>
+                                    </form>
+    
+                                @endif
+                            </div>
+                            <div class="columns is-centered is-marginless">
+    
+                                <div class="field is-grouped">
+                                    <p class="control">
+                                        <a class="like-button" aria-label="like">
+                                            <span class="icon is-small">
+                                                <i class="fas fa-heart"
+                                                    aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+                                    </p>
+                                    <p class="control">
+                                        <span class="like-count">
+                                            {{$post->likers()->count()}}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-   
-            <br>
-            <a href='/posts/{{$post->id}}'>See full</a>
-            @if(auth()->check() && auth()->user()->isAuthor($post))
-                <br>
-                <a href='/posts/{{$post->id}}/edit'>Edit</a>
-                <br>
-                <form action='/posts/{{$post->id}}' method=POST>
-                    @method('DELETE')
-                    @csrf
-                    <button class='button is-info' type="submit">Delete</button> 
-                </form>
-            @endif
-        </p>
-        </div>
-        <nav class="level is-mobile">
-        <div class="level-left">
-            {{-- <a class="level-item reply-button" aria-label="reply">
-            <span class="icon is-small">
-                <i class="fas fa-reply" aria-hidden="true"></i>
-            </span>
-            </a> 
-            <span class="level-item reply-count" >
-                block
-            </span> --}}
-            {{-- <a class="level-item" aria-label="retweet">
-            <span class="icon is-small">
-                <i class="fas fa-retweet" aria-hidden="true"></i>
-            </span>
-            </a> --}}
-            <a class="level-item like-button" aria-label="like">
-            <span class="icon is-small">
-                <i class="fas fa-heart" aria-hidden="true"></i>
-            </span>
-            </a>
-            <span class="level-item like-count" >
-                   {{$post->likers()->count()}}
-            </span>
-        </div>
-        </nav>
+        </section>
     </div>
-    </article>
-</div>
-
-
+    
+    
+    
+    @section('specific_styles')
+    <style>
+ 
+  
+    .navbar-brand .brand-text {
+      font-size: 1.11rem;
+      font-weight: bold;
+    }
+    /* .hero-body
+    {background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Plum_trees_Kitano_Tenmangu.jpg/1200px-Plum_trees_Kitano_Tenmangu.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 500px;
+    } */
+    .articles {
+      margin: 5rem 0;
+      /* margin-top: -200px; */
+    }
+    .articles .content p {
+        line-height: 1.9;
+        margin: 15px 0;
+    }
+    .author-image {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        margin-left: -30px;
+        border: 3px solid #ccc;
+        border-radius: 50%;
+    }
+    /* .media-center {
+      display: block;
+      margin-bottom: 1rem;
+    } */
+    /* .media-content {
+      margin-top: 3rem;
+    } */
+    /* .article, .promo-block {
+      margin-top: 6rem;
+    } */
+    div.column.is-8:first-child {
+      padding-top: 0;
+      margin-top: 0;
+    }
+    .article-title {
+      font-size: 2rem;
+      font-weight: lighter;
+      line-height: 2;
+    }
+    .article-subtitle {
+      color: #909AA0;
+      margin-bottom: 3rem;
+    }
+    .article-body {
+      line-height: 1.4;
+      margin: 0 4rem;
+    }
+    .promo-block .container {
+      margin: 1rem 5rem;
+    }
+    </style>
+    @endsection

@@ -21,7 +21,7 @@
         },
             function (data, status) {
                 var likeResult = data.likeResult;
-                var likeCounObject = $(self).next('.like-count');
+                var likeCounObject = $(self).parent().next().find('.like-count');
                 var likeCount = parseInt($(likeCounObject).text());
                 $(likeCounObject).text(likeResult ? likeCount + 1 : likeCount - 1);
             }).fail(function(xhr){

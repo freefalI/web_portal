@@ -24,7 +24,14 @@
         .ql-editor {
             /* background-color: #ffff00; */
         }
+        html,body {
+            /* font-family: 'Open Sans', sans-serif; */
+            /* font-size: 14px; */
+            background: #F0F2F4;
+        }
         </style>
+        @yield('specific_styles')
+
     </head>
     <body>
         <div id="app">
