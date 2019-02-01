@@ -17,38 +17,38 @@ class DatabaseSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         $user1 = User::create([
-            'name' =>'Orest 25',
-            'email' =>'orest@gmail.com',
-            'nickname' =>'orest12',
+            'name' => 'Orest 25',
+            'email' => 'orest@gmail.com',
+            'nickname' => 'orest12',
             'password' => Hash::make('aaaaaa')
         ]);
         $user2 = User::create([
-            'name' =>'Andrew Martin',
-            'email' =>'andrew@gmail.com',
-            'nickname' =>'andrew256',
+            'name' => 'Andrew Martin',
+            'email' => 'andrew@gmail.com',
+            'nickname' => 'andrew256',
             'password' => Hash::make('aaaaaa')
         ]);
         $user3 = User::create([
-            'name' =>'Bogdan Bogdan',
-            'email' =>'bodya@gmail.com',
-            'nickname' =>'bodya252',
+            'name' => 'Bogdan Bogdan',
+            'email' => 'bodya@gmail.com',
+            'nickname' => 'bodya252',
             'password' => Hash::make('aaaaaa')
         ]);
         $user1->posts()->create([
-            'content'=>$faker->sentence(),
+            'content' => $faker->sentence(),
             // 'replies' => 100
         ]);
         $user3->posts()->create([
-            'content'=>$faker->sentence()
+            'content' => $faker->sentence()
         ]);
         $user2->posts()->create([
-            'content'=>$faker->sentence()
+            'content' => $faker->sentence()
         ]);
         $user1->posts()->create([
-            'content'=>$faker->sentence()
+            'content' => $faker->sentence()
         ]);
         $user3->posts()->create([
-            'content'=>$faker->sentence()
+            'content' => $faker->sentence()
         ]);
     }
 }

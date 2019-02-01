@@ -16,28 +16,30 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $posts= $user->posts()->latest()->get();
-        return view('user.show',compact(['user','posts']));
+        $posts = $user->posts()->latest()->get();
+        return view('user.show', compact(['user', 'posts']));
     }
 
 
     public function follow(User $user)
     {
         $userCurrent = auth()->user();
-        if($userCurrent->id==$user->id){
+        if ($userCurrent->id == $user->id) {
             throw new Exception("cant follow yourself", 1);
         }
         $userCurrent->toggleFollow($user);
         return back();
     }
+
     public function followers(User $user)
     {
         $users = $user->followers()->get();
-        return view('user.followers',compact(['user','users']));
+        return view('user.followers', compact(['user', 'users']));
     }
+
     public function followings(User $user)
     {
         $users = $user->followings()->get();
-        return view('user.followings',compact(['user','users']));
+        return view('user.followings', compact(['user', 'users']));
     }
 }

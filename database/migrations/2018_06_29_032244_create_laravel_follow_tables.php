@@ -42,7 +42,7 @@ class CreateLaravelFollowTables extends Migration
     public function down()
     {
         Schema::table(config('follow.followable_table', 'followables'), function ($table) {
-            $table->dropForeign(config('follow.followable_table', 'followables').'_user_id_foreign');
+            $table->dropForeign(config('follow.followable_table', 'followables') . '_user_id_foreign');
         });
 
         Schema::drop(config('follow.followable_table', 'followables'));

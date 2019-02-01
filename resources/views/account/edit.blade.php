@@ -3,13 +3,15 @@
 
 @section('content')
 
-<form action="/account/update" method="post">
-    @csrf
-    @method('PATCH')
-  
-    @include ('account.form_layout', ['formMode' => 'create'])
-  
-  </form>
+    <br>
+    <br>
+    <form action="/account/update" method="post">
+        @csrf
+        @method('PATCH')
+
+        @include ('account.form_layout', ['formMode' => 'create'])
+
+    </form>
 
 
 

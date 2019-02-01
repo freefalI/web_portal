@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        return redirect('users/'.auth()->id());
+        return redirect('users/' . auth()->id());
         // return view('home');
     }
 }

@@ -3,8 +3,14 @@
 
 @section('content')
 
-@include('user.card')
+    @include('user.card')
 
-    
-<a href="/account/edit">Edit account</a>
+    <h2 class="subtitle">Email</h2>
+    <h3 class="subtitle">{{$user->email}}</h3>
+
+    <div class="field">
+        <p class="control button is-success">
+            <a href="/account/edit">Edit profile</a>
+        </p>
+    </div>
 @endsection

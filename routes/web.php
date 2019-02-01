@@ -16,25 +16,25 @@ Route::get('/', function () {
 });
 
 //posts
-Route::resource('posts','PostController');
-Route::patch('posts/{post}/like','PostController@like')->name('post.like');
+Route::resource('posts', 'PostController');
+Route::patch('posts/{post}/like', 'PostController@like')->name('post.like');
 
 
 //users
 // Route::resource('users','AccountController')->only([
 //     'show','edit','update'
 // ]);
-Route::get('account','AccountController@index')->middleware('auth')->name('account.index');
-Route::get('account/edit','AccountController@edit')->middleware('auth')->name('account.edit');
-Route::patch('account/update','AccountController@update')->middleware('auth')->name('account.update');
+Route::get('account', 'AccountController@index')->middleware('auth')->name('account.index');
+Route::get('account/edit', 'AccountController@edit')->middleware('auth')->name('account.edit');
+Route::patch('account/update', 'AccountController@update')->middleware('auth','verified')->name('account.update');
 
-Route::get('users/{user}','UserController@show');
-Route::post('users/{user}/follow','UserController@follow')->middleware('auth');
-Route::get('users/{user}/followers','UserController@followers');
-Route::get('users/{user}/followings','UserController@followings');
+Route::get('users/{user}', 'UserController@show');
+Route::post('users/{user}/follow', 'UserController@follow')->middleware('auth');
+Route::get('users/{user}/followers', 'UserController@followers');
+Route::get('users/{user}/followings', 'UserController@followings');
 
 
-Route::get('feed','FeedController@index')->name('feed')->middleware('auth');
+Route::get('feed', 'FeedController@index')->name('feed')->middleware('auth');
 
 Auth::routes(['verify' => true]);
 

@@ -22,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','nickname'
+        'name', 'email', 'password', 'nickname'
     ];
 
     /**
@@ -37,7 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function posts()
     {
-        return $this->hasMany(Post::class,'author_id');
+        return $this->hasMany(Post::class, 'author_id');
     }
 
     public function isAuthor(Post $post)

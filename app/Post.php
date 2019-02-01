@@ -9,13 +9,14 @@ use Overtrue\LaravelFollow\Traits\CanBeLiked;
 class Post extends Model
 {
     use CanBeLiked;
-    
-    protected $fillable=[
+
+    protected $fillable = [
         'content', 'author_id'//,'likes','replies'
     ];
+
     public function author()
     {
-        return $this->belongsTo(User::class,'author_id');
+        return $this->belongsTo(User::class, 'author_id');
     }
 
 }

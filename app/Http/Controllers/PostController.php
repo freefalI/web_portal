@@ -12,8 +12,9 @@ class PostController extends Controller
     {
         $this->middleware('auth')->except('show');
 
-        $this->middleware('can:update,post')->only(['edit','update','destroy']);
+        $this->middleware('can:update,post')->only(['edit', 'update', 'destroy']);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +23,7 @@ class PostController extends Controller
     public function index()
     {
         return view('post.index');
-        
+
     }
 
     /**
@@ -38,7 +39,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,32 +51,32 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
     {
-        return view('post.show',compact('post'));
-        
+        return view('post.show', compact('post'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
     {
-        return view('post.edit',compact('post'));
-        
+        return view('post.edit', compact('post'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Post $post)
@@ -87,7 +88,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
@@ -98,14 +99,14 @@ class PostController extends Controller
 
     public function like(Request $request, Post $post)
     {
-        
+
         $user = auth()->user();
         $user->toggleLike($post);
-        return response()->json(['likeResult'=>$user->hasLiked($post)]);
-            
+        return response()->json(['likeResult' => $user->hasLiked($post)]);
+
         // $likeCount = $post->likesCount;
         // return response()->json(compact('likeCount'));
-      
+
     }
 
     // public function repost(Post $post)

@@ -3,33 +3,33 @@
 // });
 
 
-  $(()=>{
+$(() => {
 
     $.ajaxSetup({
-        headers: { 'X-CSRF-Token': $('meta[name=csrf-token]').attr('content') }
+        headers: {'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')}
     });
 
-    
+
     $(document).on('click', '.like-button', function () {
-        var self=this;
-        var postId = $(this).closest( ".post-box" ).data('post-id');
+        var self = this;
+        var postId = $(this).closest(".post-box").data('post-id');
         console.log(postId);
-        
-        $.post("/posts/" + postId+'/like', {
-            _method: 'PATCH',
-            action :'like'
-        },
+
+        $.post("/posts/" + postId + '/like', {
+                _method: 'PATCH',
+                action: 'like'
+            },
             function (data, status) {
                 var likeResult = data.likeResult;
                 var likeCounObject = $(self).parent().next().find('.like-count');
                 var likeCount = parseInt($(likeCounObject).text());
                 $(likeCounObject).text(likeResult ? likeCount + 1 : likeCount - 1);
-            }).fail(function(xhr){
-                if(xhr.status==401){
-                    window.location = "/login";
-                }
-                
-            });
+            }).fail(function (xhr) {
+            if (xhr.status == 401) {
+                window.location = "/login";
+            }
+
+        });
     });
 
     // $(document).on('click', '.reply-button', function () {
@@ -47,14 +47,11 @@
     //             if(xhr.status==401){
     //                 window.location = "/login";
     //             }
-                
+
     //         });
     // });
 
 
-
-
-    
 });
 
 

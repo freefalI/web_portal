@@ -2,14 +2,14 @@
 
 
 @section('content')
-<h2 class=title>Feed</h2>
+    <h2 class=title>Feed</h2>
 
-@foreach ($posts as $post)
+    @foreach ($posts as $post)
 
-@include('post.card')
+        @include('post.card')
 
-    
 
-@endforeach
+
+    @endforeach
 @endsection
     

@@ -13,17 +13,17 @@ class FeedController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         // $followings=auth()->user()->followings()->posts->get();
-        $posts=Post::whereIn('author_id',auth()->user()->followings()->get()->pluck('id'))->latest()->get();
+        $posts = Post::whereIn('author_id', auth()->user()->followings()->get()->pluck('id'))->latest()->get();
         // $posts = Post::latest()->get();
-        return view('feed.index',compact('posts'));
+        return view('feed.index', compact('posts'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -34,7 +34,7 @@ class FeedController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -45,8 +45,8 @@ class FeedController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -57,7 +57,7 @@ class FeedController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
