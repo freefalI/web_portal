@@ -38,6 +38,33 @@
     @endif
 </div>
 
+<div class="field">
+    <label class="label">Account type</label>
+    {{--<p class="control">--}}
+        {{--<input  type="checkbox" name="account_type" id="" class=" {{$errors->has('account_type') ? 'is-danger' : ''}}"--}}
+               {{--value="{{ $user->account_type ?? old('account_type')}}" @if ($user->account_type=="private") 'checked' @endif>--}}
+    {{--</p>--}}
+    {{--@if ($errors->has('account_type'))--}}
+        {{--<p class="help is-danger">--}}
+            {{--{{ $errors->first('account_type') }}--}}
+        {{--</p>--}}
+    {{--@endif--}}
+
+    <div class="control">
+        <label class="radio">
+            <input type="radio" name="account_type" value="public" @if ($user->account_type=="public") checked @endif>
+            Public
+
+        </label>
+        <br>
+        <label class="radio">
+            <input type="radio" name="account_type" value="private" @if ($user->account_type=="private") checked @endif>
+            Private
+
+        </label>
+    </div>
+</div>
+
 
 <div class="field">
     <p class="control">

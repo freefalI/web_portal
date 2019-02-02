@@ -26,7 +26,7 @@ Route::patch('posts/{post}/like', 'PostController@like')->name('post.like');
 // ]);
 Route::get('account', 'AccountController@index')->middleware('auth')->name('account.index');
 Route::get('account/edit', 'AccountController@edit')->middleware('auth')->name('account.edit');
-Route::patch('account/update', 'AccountController@update')->middleware('auth','verified')->name('account.update');
+Route::patch('account/update', 'AccountController@update')->middleware('auth')->name('account.update');
 
 Route::get('users/{user}', 'UserController@show');
 Route::post('users/{user}/follow', 'UserController@follow')->middleware('auth');

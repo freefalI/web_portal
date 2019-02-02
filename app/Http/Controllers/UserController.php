@@ -42,4 +42,5 @@ class UserController extends Controller
         $users = $user->followings()->get();
         return view('user.followings', compact(['user', 'users']));
     }
+
 }

@@ -2,14 +2,18 @@
 
 
 @section('content')
+    <br>
     <h2 class=title>Feed</h2>
 
-    @foreach ($posts as $post)
+    @forelse($posts as $post)
 
         @include('post.card')
 
 
+    @empty
+        <br>
 
-    @endforeach
+        <h2 class="subtitle">You haven't followings yet</h2>
+    @endforelse
 @endsection
     

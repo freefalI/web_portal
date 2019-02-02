@@ -2,6 +2,8 @@
 
 
 @section('content')
+    <br>
+
     <h2 class=title>New Post</h2>
 
 

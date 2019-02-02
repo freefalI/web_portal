@@ -31,6 +31,11 @@
             /* font-size: 14px; */
             background: #F0F2F4;
         }
+
+        .navbar-item.is-active {
+            background-color: rgba(25, 162, 255, 0.25) !important;
+            /*color:white !important;*/
+        }
     </style>
     @yield('specific_styles')
 
@@ -50,11 +55,14 @@
             </div>
 
             <div class="navbar-menu" id="navMenu">
-                <div class="navbar-start">
+                <div class="navbar-start ">
                     @auth
-                        <a class="navbar-item " href="{{ route('feed') }}">Feed</a>
-                        <a class="navbar-item " href="{{ route('home') }}">Main Page</a>
-                        <a class="navbar-item " href="{{ route('posts.create') }}">New Post</a>
+                        <a class="navbar-item @if(Route::is('feed')) is-active @endif"
+                           href="{{ route('feed') }}">Feed</a>
+                        <a class="navbar-item @if(Request::is('users/' . auth()->id())) is-active @endif"
+                           href="{{ route('home') }}">Main Page</a>
+                        <a class="navbar-item @if(Route::is('posts.create')) is-active @endif"
+                           href="{{ route('posts.create') }}">New Post</a>
                     @endauth
                 </div>
 
@@ -67,7 +75,7 @@
                             <a class="navbar-link" href="#">{{ Auth::user()->name }}</a>
 
                             <div class="navbar-dropdown">
-                                <a class="navbar-item" href="{{ route('account.index')}}">Account</a>
+                                <a class="navbar-item @if(Route::is('account.index'))) is-active @endif" href="{{ route('account.index')}}">Account</a>
                                 <a class="navbar-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     Logout

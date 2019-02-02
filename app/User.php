@@ -22,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'nickname'
+        'name', 'email', 'password', 'nickname', 'account_type'
     ];
 
     /**
@@ -43,5 +43,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isAuthor(Post $post)
     {
         return $post->author_id == $this->id;
+    }
+
+    public function hasPublicAccount()
+    {
+        return $this->account_type=="public";
+    }
+
+    public function scopeWithPublicAccount($query)
+    {
+        return $query->where('account_type', "public");
     }
 }
