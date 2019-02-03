@@ -42,8 +42,9 @@
         $(()=> {
             $('#search-button').on('click', function () {
                 $value = $(this).parent().find('#search_input').val();
+                $value = $value.trim();
                 console.log($value);
-                if ($value.trim() === "") {
+                if ($value === "") {
                     $('#search_results').html('');
                 } else {
                     $.ajax({

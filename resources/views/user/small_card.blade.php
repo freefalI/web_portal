@@ -1,4 +1,4 @@
-<div class="column is-one-third">
+<div class="column is-one-third user-small-card">
     <div class="card large">
         <div class="card-image">
             <figure class="image">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="media-content">
                     <a href="/users/{{$user->id}}">
-                        <p class="title is-4">
+                        <p class="title is-4" id="user-name">
                         {{$user->name}}
                         </p>
                     </a>
