@@ -62,8 +62,10 @@
                         <a class="navbar-item @if(Request::is('users/' . auth()->id())) is-active @endif"
                            href="{{ route('home') }}">Main Page</a>
                         <a class="navbar-item @if(Route::is('posts.create')) is-active @endif"
-                           href="{{ route('posts.create') }}">New Post</a>
+                        href="{{ route('posts.create') }}">New Post</a>
                     @endauth
+                        <a class="navbar-item @if(Route::is('search')) is-active @endif"
+                           href="{{ route('search') }}">Search</a>
                 </div>
 
                 <div class="navbar-end">

@@ -26,11 +26,13 @@
                     </div>
                 </div>
                 <!-- Developers -->
-                <div class="row columns">
+                <div class="section">
+                    <div class="row columns is-multiline">
 
-                    @foreach ($users as $user)
-                        @include('user.small_card')
-                    @endforeach
+                        @foreach ($users as $user)
+                            @include('user.small_card')
+                        @endforeach
+                    </div>
                 </div>
                 <!-- End Staff -->
             @endif

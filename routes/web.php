@@ -28,6 +28,10 @@ Route::get('account', 'AccountController@index')->middleware('auth')->name('acco
 Route::get('account/edit', 'AccountController@edit')->middleware('auth')->name('account.edit');
 Route::patch('account/update', 'AccountController@update')->middleware('auth')->name('account.update');
 
+Route::get('search', 'UserSearchController@index')->name('search');
+Route::get('search.ajax', 'UserSearchController@ajax_search');
+
+
 Route::get('users/{user}', 'UserController@show');
 Route::post('users/{user}/follow', 'UserController@follow')->middleware('auth');
 Route::get('users/{user}/followers', 'UserController@followers');

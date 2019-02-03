@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <!-- Developers -->
-                <div class="row columns">
+                <div class="row columns is-multiline">
 
                     @foreach ($users as $user)
                         @include('user.small_card')
