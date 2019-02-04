@@ -27,6 +27,7 @@ Route::patch('posts/{post}/like', 'PostController@like')->name('post.like');
 Route::get('account', 'AccountController@index')->middleware('auth')->name('account.index');
 Route::get('account/edit', 'AccountController@edit')->middleware('auth')->name('account.edit');
 Route::patch('account/update', 'AccountController@update')->middleware('auth')->name('account.update');
+Route::delete('account/delete_avatar', 'AccountController@deleteAvatar')->middleware('auth')->name('account.delete_avatar');
 
 Route::get('search', 'UserSearchController@index')->name('search');
 Route::get('search.ajax', 'UserSearchController@ajax_search');

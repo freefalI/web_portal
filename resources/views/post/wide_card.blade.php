@@ -8,8 +8,8 @@
                         alt="Image"> --}}
                     {{-- <img src="{{ Avatar::create('Joko Widodo')->toBase64()
                     }}" /> --}}
-                    <img src="{{ Avatar::create($post->author->name)->toBase64()
-                            }}"/>
+                    <img src="{{$user->getFirstMediaUrl('avatars')}}">
+
 
 
                 </a>

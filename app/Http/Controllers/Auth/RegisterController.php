@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Avatar;
+use Spatie\Image\Image;
+use Spatie\Image\Manipulations;
 
 class RegisterController extends Controller
 {
@@ -53,6 +56,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'nickname' => ['required', 'string', 'max:50', 'unique:users', 'alpha_dash'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'avatar' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     }
 
@@ -64,11 +68,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::make([
             'name' => $data['name'],
             'email' => $data['email'],
             'nickname' => $data['nickname'],
             'password' => Hash::make($data['password']),
+
         ]);
+
+        if (isset($data['avatar'])) {
+            $avatarFileName = $data['avatar']->store('');
+            Image::load('storage/' .$avatarFileName)
+                ->crop(Manipulations::CROP_CENTER, 100, 100)->save();
+
+            $user->addMedia('storage/' .$avatarFileName)->toMediaCollection('avatars');
+            $user->has_avatar = true;
+        } else {
+            $fileName = $user->id . '_avatar' . time() . '.png';
+            Avatar::create($user->name)->save($fileName, 100);
+            $user->addMedia($fileName)->toMediaCollection('avatars');
+        }
+        $user->save();
+        return $user;
     }
 }

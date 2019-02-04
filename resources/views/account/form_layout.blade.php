@@ -41,13 +41,13 @@
 <div class="field">
     <label class="label">Account type</label>
     {{--<p class="control">--}}
-        {{--<input  type="checkbox" name="account_type" id="" class=" {{$errors->has('account_type') ? 'is-danger' : ''}}"--}}
-               {{--value="{{ $user->account_type ?? old('account_type')}}" @if ($user->account_type=="private") 'checked' @endif>--}}
+    {{--<input  type="checkbox" name="account_type" id="" class=" {{$errors->has('account_type') ? 'is-danger' : ''}}"--}}
+    {{--value="{{ $user->account_type ?? old('account_type')}}" @if ($user->account_type=="private") 'checked' @endif>--}}
     {{--</p>--}}
     {{--@if ($errors->has('account_type'))--}}
-        {{--<p class="help is-danger">--}}
-            {{--{{ $errors->first('account_type') }}--}}
-        {{--</p>--}}
+    {{--<p class="help is-danger">--}}
+    {{--{{ $errors->first('account_type') }}--}}
+    {{--</p>--}}
     {{--@endif--}}
 
     <div class="control">
@@ -63,6 +63,31 @@
 
         </label>
     </div>
+
+</div>
+
+<div class="field">
+    <label class="label">Avatar</label>
+
+    <div class="file">
+        <label class="file-label">
+            <input class="file-input" type="file" name="avatar">
+            <span class="file-cta">
+                    <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                        Choose a file…
+                    </span>
+                </span>
+        </label>
+    </div>
+    @if ($errors->has('avatar'))
+        <p class="help is-danger">
+            {{ $errors->first('avatar') }}
+        </p>
+    @endif
+
 </div>
 
 

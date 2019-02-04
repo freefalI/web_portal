@@ -5,7 +5,7 @@
 
     <br>
     <br>
-    <form action="/account/update" method="post">
+    <form action="/account/update" method="post"  enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 

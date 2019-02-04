@@ -11,7 +11,8 @@
                     <figure class="image is-96x96">
                         {{-- <img src="http://www.radfaces.com/images/avatars/alex-mack.jpg" alt="Image"> --}}
                         <a href="/users/{{$user->id}}">
-                            <img src="{{ Avatar::create($user->name)->toBase64() }}">
+                            <img src="{{$user->getFirstMediaUrl('avatars')}}">
+
                         </a>
                     </figure>
                 </div>

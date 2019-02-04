@@ -37,7 +37,7 @@
                 <p class="subtitle has-text-grey">Please register.</p>
                 <div class="box">
 
-                    <form class="login-form" method="POST" action="{{ route('register') }}">
+                    <form class="login-form" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
 
@@ -102,6 +102,33 @@
                                         </p>
                                     @endif
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label">
+                                <label class="label">Avatar (optional)</label>
+                            </div>
+
+                            <div class="field-body">
+                                <div class="file">
+                                    <label class="file-label">
+                                        <input class="file-input" type="file" name="avatar">
+                                        <span class="file-cta">
+                                            <span class="file-icon">
+                                                <i class="fas fa-upload"></i>
+                                            </span>
+                                            <span class="file-label">
+                                                Choose a file…
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                                @if ($errors->has('avatar'))
+                                    <p class="help is-danger">
+                                        {{ $errors->first('avatar') }}
+                                    </p>
+                                @endif
                             </div>
                         </div>
 

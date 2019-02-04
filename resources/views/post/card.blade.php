@@ -10,9 +10,7 @@
                                 class="author-image" alt="Placeholder image">
                             --}}
                             <a href="/users/{{$post->author->id}}">
-
-                                <img src="{{ Avatar::create($post->author->name)->toBase64()
-                                }}" class="author-image" alt="Placeholder image"/>
+                                <img src="{{$user->getFirstMediaUrl('avatars','thumb')}}" class="author-image" alt="Placeholder image"/>
                             </a>
                         </div>
                         <div class="media-content has-text-centered">
