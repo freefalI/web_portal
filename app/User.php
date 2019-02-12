@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\Models\Media;
+use Actuallymab\LaravelComment\CanComment;
 
 class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     use CanBeFollowed;
 
     use HasMediaTrait;
+    use CanComment;
     /**
      * The attributes that are mass assignable.
      *

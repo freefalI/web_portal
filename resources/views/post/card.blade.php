@@ -10,7 +10,8 @@
                                 class="author-image" alt="Placeholder image">
                             --}}
                             <a href="/users/{{$post->author->id}}">
-                                <img src="{{$user->getFirstMediaUrl('avatars','thumb')}}" class="author-image" alt="Placeholder image"/>
+                                <img src="{{$post->author->getFirstMediaUrl('avatars','thumb')}}" class="author-image"
+                                     alt="Placeholder image"/>
                             </a>
                         </div>
                         <div class="media-content has-text-centered">
@@ -76,8 +77,11 @@
                     </div>
                 </div>
             </div>
+
+        @yield("post-comments")
         </div>
     </section>
+
 </div>
 
 

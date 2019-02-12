@@ -35,20 +35,20 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('aaaaaa')
         ]);
         $user1->posts()->create([
-            'content' => $faker->sentence(),
+            'content' => '{"ops":[{"attributes":{"size":"large"},"insert":"' . $faker->sentence() . '"},{"insert":"\n"}]}',
             // 'replies' => 100
         ]);
         $user3->posts()->create([
-            'content' => $faker->sentence()
+            'content' => '{"ops":[{"attributes":{"size":"large"},"insert":"' . $faker->sentence() . '"},{"insert":"\n"}]}'
         ]);
         $user2->posts()->create([
-            'content' => $faker->sentence()
+            'content' => '{"ops":[{"attributes":{"size":"large"},"insert":"' . $faker->sentence() . '"},{"insert":"\n"}]}'
         ]);
         $user1->posts()->create([
-            'content' => $faker->sentence()
+            'content' => '{"ops":[{"attributes":{"size":"large"},"insert":"' . $faker->sentence() . '"},{"insert":"\n"}]}'
         ]);
         $user3->posts()->create([
-            'content' => $faker->sentence()
+            'content' => '{"ops":[{"attributes":{"size":"large"},"insert":"' . $faker->sentence() . '"},{"insert":"\n"}]}'
         ]);
     }
 }

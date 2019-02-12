@@ -99,7 +99,6 @@ class PostController extends Controller
 
     public function like(Request $request, Post $post)
     {
-
         $user = auth()->user();
         $user->toggleLike($post);
         return response()->json(['likeResult' => $user->hasLiked($post)]);
@@ -123,4 +122,18 @@ class PostController extends Controller
     //         return response()->json(compact('replyCount'));
     //     }
     // }
+
+
+    public function comment(Request $request, Post $post)
+    {
+        $validated = $request->validate([
+            'comment' => ['required', 'string', 'max:255'],
+        ]);
+        $user = auth()->user();
+        $user->comment($post, $validated["comment"]);
+//
+        return back();
+    }
+
+
 }

@@ -18,7 +18,7 @@ Route::get('/', function () {
 //posts
 Route::resource('posts', 'PostController');
 Route::patch('posts/{post}/like', 'PostController@like')->name('post.like');
-
+Route::patch('posts/{post}/comment', 'PostController@comment')->name('post.comment');
 
 //users
 // Route::resource('users','AccountController')->only([
