@@ -100,6 +100,7 @@ class AccountController extends Controller
         ])->validate();
 
         $oldUserName = $user->name;
+        $oldAccountType = $user->account_type;
         $user->update($validated);
 
         if ($request->has('avatar')) {
@@ -118,6 +119,12 @@ class AccountController extends Controller
             Avatar::create($user->name)->save($fileName, 100);
             $user->addMedia($fileName)->toMediaCollection('avatars');
         }
+
+        if($user->account_type=="private" && $oldAccountType=="public"){
+            $user->incomingFollowRequests()->delete();
+        }
+
+
 
         return redirect()->route('account.index');//->with('flash_message', 'User edited!');
     }

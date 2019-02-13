@@ -3,6 +3,8 @@
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,7 +22,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Orest 25',
             'email' => 'orest@gmail.com',
             'nickname' => 'orest12',
-            'password' => Hash::make('aaaaaa')
+            'password' => Hash::make('aaaaaa'),
+            'account_type' => "private"
         ]);
         $user2 = User::create([
             'name' => 'Andrew Martin',

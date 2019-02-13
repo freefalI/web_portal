@@ -34,7 +34,7 @@ class PostPolicy
     }
 
     /**
-     * Determine whether the user can update the post.
+     * Determine whether the user can update or delete the post.
      *
      * @param  \App\User  $user
      * @param  \App\Post  $post
@@ -80,4 +80,19 @@ class PostPolicy
     {
         //
     }
+
+    /**
+     * Determine whether the user can comment the post.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Post  $post
+     * @return mixed
+     */
+    public function comment(User $user, Post $post)
+    {
+        return $user->isFollowing($post->author) || $user->isAuthor($post);
+    }
+
+
+
 }

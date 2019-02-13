@@ -21,22 +21,28 @@
                 <p class="control">
                     <a href="/users/{{$user->id}}/followings" class="button is-info">Followings</a>
                 </p>
+                @can('follow', $user)
+                    @if(auth()->user()->sentFollowRequestTo($user))
+                        <div class="control button is-link " disabled>
+                            You have already sent request
+                        </div>
+                    @else
 
-                @if(auth()->check() && !auth()->user()->is($user))
-                    <div class="control button is-link"
-                         onclick="event.preventDefault();document.getElementById('toggle-follow-form').submit();">
+                        <div class="control button is-link"
+                             onclick="event.preventDefault();document.getElementById('toggle-follow-form').submit();">
 
-                        <form id="toggle-follow-form" action="/users/{{$user->id}}/follow" method="post">
-                            @csrf
-                            @if( Auth::user()->isFollowing($user))
-                                Unfollow
-                            @else
-                                Follow
-                            @endif
-                        </form>
-                    </div>
+                            <form id="toggle-follow-form" action="/users/{{$user->id}}/follow" method="post">
+                                @csrf
+                                @if( Auth::user()->isFollowing($user))
+                                    Unfollow
+                                @else
+                                    Follow
+                                @endif
+                            </form>
+                        </div>
+                    @endif
 
-                @endif
+                @endcan
 
             </div>
         </div>

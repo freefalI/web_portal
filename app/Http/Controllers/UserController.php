@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FollowRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -20,16 +21,6 @@ class UserController extends Controller
         return view('user.show', compact(['user', 'posts']));
     }
 
-
-    public function follow(User $user)
-    {
-        $userCurrent = auth()->user();
-        if ($userCurrent->id == $user->id) {
-            throw new Exception("cant follow yourself", 1);
-        }
-        $userCurrent->toggleFollow($user);
-        return back();
-    }
 
     public function followers(User $user)
     {

@@ -35,7 +35,7 @@
                                     <a href='/posts/{{$post->id}}' class="button is-info is-outlined">See full</a>
                                 </p>
                             @endif
-                            @if(auth()->check() && auth()->user()->isAuthor($post))
+                            @can("update",$post)
                                 {{-- <br> --}}
                                 <p class="control">
 
@@ -54,7 +54,7 @@
                                     </p>
                                 </form>
 
-                            @endif
+                            @endcan
                         </div>
                         <div class="columns is-centered is-marginless">
 
@@ -78,7 +78,7 @@
                 </div>
             </div>
 
-        @yield("post-comments")
+            @yield("post-comments")
         </div>
     </section>
 

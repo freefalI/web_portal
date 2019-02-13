@@ -12,8 +12,8 @@ class UserPolicy
     /**
      * Determine whether the user can view the post.
      *
-     * @param  \App\User  $user
-     * @param  \App\Post  $post
+     * @param  \App\User $user
+     * @param  \App\Post $post
      * @return mixed
      */
     public function view(User $user, Post $post)
@@ -24,7 +24,7 @@ class UserPolicy
     /**
      * Determine whether the user can create posts.
      *
-     * @param  \App\User  $user
+     * @param  \App\User $user
      * @return mixed
      */
     public function create(User $user)
@@ -35,20 +35,20 @@ class UserPolicy
     /**
      * Determine whether the user can update the post.
      *
-     * @param  \App\User  $user
-     * @param  \App\Post  $post
+     * @param  \App\User $authUser
+     * @param  \App\User $user
      * @return mixed
      */
     public function update(User $authUser, User $user)
     {
-        return $authUser->id==$user->id;
+        return $authUser->is($user);
     }
 
     /**
      * Determine whether the user can delete the post.
      *
-     * @param  \App\User  $user
-     * @param  \App\Post  $post
+     * @param  \App\User $user
+     * @param  \App\Post $post
      * @return mixed
      */
     public function delete(User $user, Post $post)
@@ -59,8 +59,8 @@ class UserPolicy
     /**
      * Determine whether the user can restore the post.
      *
-     * @param  \App\User  $user
-     * @param  \App\Post  $post
+     * @param  \App\User $user
+     * @param  \App\Post $post
      * @return mixed
      */
     public function restore(User $user, Post $post)
@@ -71,12 +71,25 @@ class UserPolicy
     /**
      * Determine whether the user can permanently delete the post.
      *
-     * @param  \App\User  $user
-     * @param  \App\Post  $post
+     * @param  \App\User $user
+     * @param  \App\Post $post
      * @return mixed
      */
     public function forceDelete(User $user, Post $post)
     {
         //
     }
+
+    /**
+     * Determine whether the user can follow another user.
+     *
+     * @param  \App\User $user
+     * @param  \App\Post $post
+     * @return mixed
+     */
+    public function follow(User $authUser, User $user)
+    {
+        return ! $authUser ->is($user);
+    }
+
 }

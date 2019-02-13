@@ -21,5 +21,23 @@
             </form>
         </div>
     @endif
+    @if( auth()->user()->incomingFollowRequests->count())
+        <h2 class="subtitle">Follow requests</h2>
 
+        @foreach(auth()->user()->incomingFollowRequests as $request)
+            <div class="field is-grouped">
+                <p class="control">
+                    {{$request->requestingUser->name}}
+                </p>
+                <div class="control">
+                    <form action="requests/{{$request->id}}/accept" method="POST">
+                        @csrf
+                        {{--@method("DELETE")--}}
+                        <button class='button is-success' type="submit">Accept</button>
+                    </form>
+                </div>
+            </div>
+        @endforeach
+
+    @endif
 @endsection

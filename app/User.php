@@ -29,7 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'nickname', 'account_type','has_avatar'
+        'name', 'email', 'password', 'nickname', 'account_type', 'has_avatar'
     ];
 
     /**
@@ -54,13 +54,19 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public function hasPublicAccount()
     {
-        return $this->account_type=="public";
+        return $this->account_type == "public";
+    }
+
+    public function hasPrivateAccount()
+    {
+        return $this->account_type == "private";
     }
 
     public function scopeWithPublicAccount($query)
     {
         return $query->where('account_type', "public");
     }
+
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
@@ -68,4 +74,27 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
             ->height(60);
     }
 
+    public function incomingFollowRequests()
+    {
+        return $this->hasMany(FollowRequest::class, 'requested_user_id');
+    }
+
+    public function outgoingFollowRequests()
+    {
+        return $this->hasMany(FollowRequest::class, 'requesting_user_id');
+    }
+
+    public function acceptFollowRequest(FollowRequest $followRequest)
+    {
+        dd($followRequest);
+        return $this->hasMany(FollowRequest::class, 'requesting_user_id');
+    }
+
+    public function sentFollowRequestTo(User $user)
+    {
+        return FollowRequest::where([
+            "requesting_user_id" => auth()->user()->id,
+            "requested_user_id" => $user->id
+        ])->count();
+    }
 }

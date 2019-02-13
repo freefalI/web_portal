@@ -34,10 +34,11 @@ Route::get('search.ajax', 'UserSearchController@ajax_search');
 
 
 Route::get('users/{user}', 'UserController@show');
-Route::post('users/{user}/follow', 'UserController@follow')->middleware('auth');
 Route::get('users/{user}/followers', 'UserController@followers');
 Route::get('users/{user}/followings', 'UserController@followings');
 
+Route::post('users/{user}/follow', 'FollowRequestController@follow')->middleware('auth');
+Route::post('requests/{followRequest}/accept', 'FollowRequestController@acceptFollowRequest')->middleware('auth');
 
 Route::get('feed', 'FeedController@index')->name('feed')->middleware('auth');
 

@@ -8,7 +8,8 @@
     @endguest
 
     @auth
-        @if( auth()->user()->isFollowing($post->author) || auth()->user()->isAuthor($post))
+        {{--@if( auth()->user()->isFollowing($post->author) || auth()->user()->isAuthor($post))--}}
+        @can('comment', $post)
             <div class="comment-form">
                 <form action="/posts/{{$post->id}}/comment" method="post">
 
@@ -38,7 +39,7 @@
 
                 </form>
             </div>
-        @endif
+        @endcan
         {{--{{User::find($comment->commented_id)->name}}--}}
         @foreach($post->comments()->latest()->get() as $key=>$comment)
             <div id="msg-card-{{$key}}" data-preview-id="{{$key}}" class="card">
@@ -50,7 +51,7 @@
                     <div class="msg-subject"><span class="msg-subject"><strong
                                     id="fake-subject-1">{{$comment->author->name}}</strong>
                         @if (auth()->user()->isAuthor($post))
-                            <strong class="is-danger subtitle">( Author )</strong>
+                                <strong class="is-danger subtitle">( Author )</strong>
                             @endif
                         </span>
                     </div>
