@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\WasFollowed;
+use App\User;
 use Illuminate\Http\Request;
 
 class FollowRequestController extends Controller
@@ -17,7 +19,10 @@ class FollowRequestController extends Controller
         } else {
             $userCurrent = auth()->user();
             if ($userCurrent->id == $user->id) {
-                throw new Exception("cant follow yourself", 1);
+                throw new \Exception("cant follow yourself", 1);
+            }
+            if( !auth()->user()->isFollowing($user)) {
+                $user->notify(new WasFollowed( $userCurrent ));
             }
             $userCurrent->toggleFollow($user);
         }

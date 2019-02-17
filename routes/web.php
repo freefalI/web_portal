@@ -33,7 +33,7 @@ Route::get('search', 'UserSearchController@index')->name('search');
 Route::get('search.ajax', 'UserSearchController@ajax_search');
 
 
-Route::get('users/{user}', 'UserController@show');
+Route::get('users/{user}', 'UserController@show')->name("user.show");
 Route::get('users/{user}/followers', 'UserController@followers');
 Route::get('users/{user}/followings', 'UserController@followings');
 
