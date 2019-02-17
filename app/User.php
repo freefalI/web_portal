@@ -97,4 +97,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
             "requested_user_id" => $user->id
         ])->count();
     }
+
+    // make email verification queued
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new \App\Notifications\VerifyEmailQueued());
+    }
+
 }
